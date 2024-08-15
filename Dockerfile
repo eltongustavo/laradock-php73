@@ -38,10 +38,8 @@ COPY apache.conf /etc/apache2/sites-available/000-default.conf
 # Habilite o mod_rewrite do Apache
 RUN a2enmod rewrite
 
-# Copie o script de inicialização para o container
-COPY entrypoint.sh /entrypoint.sh
-
 # Torne o script executável
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Defina o script como o ponto de entrada do container

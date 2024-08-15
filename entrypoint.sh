@@ -9,14 +9,14 @@ if [ ! -d "/var/www/html/project" ]; then
     composer create-project --prefer-dist laravel/laravel:^8.0 project
 fi
 
-# Ajusta a propriedade do diretório para o usuário e grupo do Apache
+# Ajusta a propriedade do diretório para todos os usuários
 chown -R www-data:www-data /var/www/html/project
+chmod -R 777 /var/www/html/project
 
 # Define permissões apropriadas
-find /var/www/html/project -type d -exec chmod 755 {} \;
-find /var/www/html/project -type f -exec chmod 644 {} \;
-chmod -R 775 /var/www/html/project/storage
-chmod -R 775 /var/www/html/project/bootstrap/cache
+find /var/www/html/project -type d -exec chmod 777 {} \;
+find /var/www/html/project -type f -exec chmod 666 {} \;
 
 # Inicia o Apache no primeiro plano
 exec apache2-foreground
+
